@@ -3,6 +3,7 @@
  *
  * 使用asp只能获取整个网页
  */
+const path = require('path');
 
 const cheerio = require('cheerio');
 const request = require('then-request');
@@ -28,7 +29,7 @@ let qs = {
 let url = 'https://www.liepin.com/zhaopin/'
 
 async function getAll() {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10; i++) {
         qs.curPage = i
         console.log(url + " @ " + qs.curPage)
         let body = await getAsync(url, qs)
@@ -67,8 +68,9 @@ function unique(arr) {
 }
 
 function writeToFile(obj) {
-
-    fs.writeFileSync(module.filename + "on", JSON.stringify(obj, 0, 4))
+    let pobj = path.parse(module.filename);
+    let filename = path.join(pobj.dir,"..", "data", pobj.name + ".json")
+    fs.writeFileSync(filename, JSON.stringify(obj, 0, 4))
 }
 
 getAll()

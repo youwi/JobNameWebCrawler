@@ -56,8 +56,10 @@ function unique(arr) {
 }
 
 function writeToFile(obj) {
-
-    fs.writeFileSync(module.filename + "on", JSON.stringify(obj, 0, 4))
+    let pobj = path.parse(module.filename);
+    let filename = path.join(pobj.dir, "..", "data", pobj.name + ".json")
+    fs.writeFileSync(filename, JSON.stringify(obj, 0, 4))
 }
+
 
 getAll()
