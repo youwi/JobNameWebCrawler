@@ -1,3 +1,9 @@
+/**
+ * 使用WebRTC来获取电脑的IP地址
+ * 支持Chrome/Firefox
+ *
+ * @param onNewIP
+ */
 function findIP(onNewIP) {
     var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
     var pc = new myPeerConnection({iceServers: [{urls: "stun:stun.l.google.com:19302"}]}),
